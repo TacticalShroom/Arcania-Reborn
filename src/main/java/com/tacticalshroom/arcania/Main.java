@@ -1,4 +1,4 @@
-package main.java.com.tacticalshroom.arcania;
+package com.tacticalshroom.arcania;
 
 import org.bukkit.plugin.java.JavaPlugin;
 

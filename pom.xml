@@ -8,5 +8,33 @@
     <artifactId>Arcania2.0</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <properties>
+        <maven.compiler.source>16.1</maven.compiler.source>
+        <maven.compiler.target>16.1</maven.compiler.target>
+    </properties>
+
+    <repositories>
+        <!-- This adds the Spigot Maven repository to the build -->
+        <repository>
+            <id>spigot-repo</id>
+            <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
+        </repository>
+    </repositories>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>3.8.1</version>
+        </dependency>
+
+        <!--This adds the Spigot API artifact to the build -->
+        <dependency>
+            <groupId>org.spigotmc</groupId>
+            <artifactId>spigot-api</artifactId>
+            <version>1.17.1-R0.1-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
     
 </project>
