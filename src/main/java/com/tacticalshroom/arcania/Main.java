@@ -1,4 +1,4 @@
-package com.tacticalshroom.arcania;
+package main.java.com.tacticalshroom.arcania;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -11,7 +11,6 @@ public class Main extends JavaPlugin {
     }
 
     public void onDisable() {
-
 
 
 
