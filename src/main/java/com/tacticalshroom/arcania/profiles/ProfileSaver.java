@@ -64,6 +64,9 @@ public class ProfileSaver implements Listener {
             player.teleport(Bukkit.getWorld("SG").getSpawnLocation());
             player.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(20);
             player.setLevel(0);
+
+            player.removeMetadata("playing", Main.plugin);
+            player.removeMetadata(classSelection, Main.plugin);
         }
     }
 
