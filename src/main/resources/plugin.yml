@@ -1,0 +1,12 @@
+main: com.tacticalshroom.arcania.Main
+name: Arcania-Reborn
+version: 0.0.1
+api-version: 1.17
+description: Arcania Reborn MMORPG plugin
+commands:
+  class:
+    description: opens class selection gui
+    usage: /<command>
+    aliases:
+      - c
+      - classes

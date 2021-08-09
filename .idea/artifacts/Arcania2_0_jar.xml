@@ -3,7 +3,6 @@
     <output-path>$PROJECT_DIR$/out/artifacts/Arcania2_0_jar</output-path>
     <root id="archive" name="Arcania2.0.jar">
       <element id="module-output" name="Arcania2.0" />
-      <element id="library" level="project" name="Arcania" />
     </root>
   </artifact>
 </component>
