@@ -18,6 +18,7 @@ public class ProfileSaver implements Listener {
 
     @EventHandler
     public void onLeave(PlayerQuitEvent e)  {
+
         Player player = e.getPlayer();
         String classSelection = "";
         if (player.hasMetadata("knight"))   {

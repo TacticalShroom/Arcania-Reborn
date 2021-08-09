@@ -6,6 +6,3 @@ description: Arcania Reborn MMORPG plugin
 commands:
   profiles:
     description: opens class selection gui
-    aliases:
-      - p
-      - profile

@@ -63,7 +63,7 @@ public class ClassSelectionListener implements Listener {
                 file = new File(Main.plugin.getDataFolder().getAbsolutePath() + File.separator + "Profiles", player.getUniqueId() + "-" + "wizard" + "-Profile.yml");
                 c = YamlConfiguration.loadConfiguration(file);
 
-                load = true;
+
                 player.closeInventory();
             }
             else if (e.getCurrentItem().getItemMeta().getLocalizedName().equals("ranger"))   {
@@ -71,10 +71,6 @@ public class ClassSelectionListener implements Listener {
                 player.setMetadata("playing", new FixedMetadataValue(Main.plugin, "playing"));
                 player.sendMessage(ChatColor.GREEN + "You have selected the ranger class!");
 
-                file = new File(Main.plugin.getDataFolder().getAbsolutePath() + File.separator + "Profiles", player.getUniqueId() + "-" + "ranger" + "-Profile.yml");
-                c = YamlConfiguration.loadConfiguration(file);
-
-                load = true;
                 player.closeInventory();
             }
             else if (e.getCurrentItem().getItemMeta().getLocalizedName().equals("druid"))   {
@@ -82,32 +78,11 @@ public class ClassSelectionListener implements Listener {
                 player.setMetadata("playing", new FixedMetadataValue(Main.plugin, "playing"));
                 player.sendMessage(ChatColor.GREEN + "You have selected the druid class!");
 
-                file = new File(Main.plugin.getDataFolder().getAbsolutePath() + File.separator + "Profiles", player.getUniqueId() + "-" + "druid" + "-Profile.yml");
-                c = YamlConfiguration.loadConfiguration(file);
-
-                load = true;
                 player.closeInventory();
             }
-            if (load)   {
-                double x = c.getDouble("location.x");
-                double y = c.getDouble("location.y");
-                double z = c.getDouble("location.z");
-                double pitch = c.getDouble("location.pitch");
-                double yaw = c.getDouble("location.yaw");
-
-                World world = Bukkit.getWorld(c.getString("location.world"));
-
-                Location location = new Location(world, x, y, z, (float) yaw, (float) pitch);
-                player.teleport(location);
-
-                player.getInventory().setContents((ItemStack[]) c.get("inventory.contents"));
-                player.getInventory().setArmorContents((ItemStack[]) c.get("inventory.armor"));
-                player.setLevel(c.getInt("stats.level"));
-                player.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(c.getInt("stats.maxHealth"));
-                player.setHealth(c.getDouble("stats.health"));
-            }
         }
-        else if (e.getView().getTitle().startsWith(ChatColor.GOLD + "Profile Selector"))    {
+        else if (e.getView().getTitle().startsWith(ChatColor.GOLD + "Profile Selection"))    {
+            e.setCancelled(true);
             Player player = (Player) e.getWhoClicked();
             if (e.getCurrentItem().getItemMeta().getLocalizedName().equals("create"))   {
 
@@ -202,6 +177,79 @@ public class ClassSelectionListener implements Listener {
 
                 player.closeInventory();
                 player.openInventory(inv);
+            }
+            File file;
+            FileConfiguration c = null;
+            boolean load = false;
+
+            if (e.getCurrentItem().getItemMeta().getLocalizedName().equals("knight"))   {
+                player.setMetadata("knight", new FixedMetadataValue(Main.plugin, "knight"));
+                player.setMetadata("playing", new FixedMetadataValue(Main.plugin, "playing"));
+
+                file = new File(Main.plugin.getDataFolder().getAbsolutePath() + File.separator + "Profiles", player.getUniqueId() + "-" + "knight" + "-Profile.yml");
+                c = YamlConfiguration.loadConfiguration(file);
+
+                load = true;
+                player.closeInventory();
+            }
+            else if (e.getCurrentItem().getItemMeta().getLocalizedName().equals("rogue"))   {
+                player.setMetadata("rogue", new FixedMetadataValue(Main.plugin, "rogue"));
+                player.setMetadata("playing", new FixedMetadataValue(Main.plugin, "playing"));
+
+                file = new File(Main.plugin.getDataFolder().getAbsolutePath() + File.separator + "Profiles", player.getUniqueId() + "-" + "rogue" + "-Profile.yml");
+                c = YamlConfiguration.loadConfiguration(file);
+
+                load = true;
+                player.closeInventory();
+            }
+            else if (e.getCurrentItem().getItemMeta().getLocalizedName().equals("wizard"))   {
+                player.setMetadata("wizard", new FixedMetadataValue(Main.plugin, "wizard"));
+                player.setMetadata("playing", new FixedMetadataValue(Main.plugin, "playing"));
+
+
+                file = new File(Main.plugin.getDataFolder().getAbsolutePath() + File.separator + "Profiles", player.getUniqueId() + "-" + "wizard" + "-Profile.yml");
+                c = YamlConfiguration.loadConfiguration(file);
+
+                load = true;
+                player.closeInventory();
+            }
+            else if (e.getCurrentItem().getItemMeta().getLocalizedName().equals("ranger"))   {
+                player.setMetadata("ranger", new FixedMetadataValue(Main.plugin, "ranger"));
+                player.setMetadata("playing", new FixedMetadataValue(Main.plugin, "playing"));
+
+                file = new File(Main.plugin.getDataFolder().getAbsolutePath() + File.separator + "Profiles", player.getUniqueId() + "-" + "ranger" + "-Profile.yml");
+                c = YamlConfiguration.loadConfiguration(file);
+
+                load = true;
+                player.closeInventory();
+            }
+            else if (e.getCurrentItem().getItemMeta().getLocalizedName().equals("druid"))   {
+                player.setMetadata("druid", new FixedMetadataValue(Main.plugin, "druid"));
+                player.setMetadata("playing", new FixedMetadataValue(Main.plugin, "playing"));
+
+                file = new File(Main.plugin.getDataFolder().getAbsolutePath() + File.separator + "Profiles", player.getUniqueId() + "-" + "druid" + "-Profile.yml");
+                c = YamlConfiguration.loadConfiguration(file);
+
+                load = true;
+                player.closeInventory();
+            }
+            if (load)   {
+                double x = c.getDouble("location.x");
+                double y = c.getDouble("location.y");
+                double z = c.getDouble("location.z");
+                double pitch = c.getDouble("location.pitch");
+                double yaw = c.getDouble("location.yaw");
+
+                World world = Bukkit.getWorld(c.getString("location.world"));
+
+                Location location = new Location(world, x, y, z, (float) yaw, (float) pitch);
+                player.teleport(location);
+
+                player.getInventory().setContents(c.getList("inventory.contents").toArray(new ItemStack[36]));
+                player.getInventory().setArmorContents(c.getList("inventory.armor").toArray(new ItemStack[4]));
+                player.setLevel(c.getInt("stats.level"));
+                player.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(c.getInt("stats.maxHealth"));
+                player.setHealth(c.getDouble("stats.health"));
             }
         }
     }

@@ -2,6 +2,7 @@ package com.tacticalshroom.arcania;
 
 import com.tacticalshroom.arcania.classes.selection.ClassSelectionCommand;
 import com.tacticalshroom.arcania.classes.selection.ClassSelectionListener;
+import com.tacticalshroom.arcania.profiles.ProfileSaver;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -21,7 +22,7 @@ public class Main extends JavaPlugin {
 
         //-------------------------------LISTENERS--------------------------------------------------------------------------------------
         this.getServer().getPluginManager().registerEvents(new ClassSelectionListener(), this);
-
+        this.getServer().getPluginManager().registerEvents(new ProfileSaver(), this);
 
 
 

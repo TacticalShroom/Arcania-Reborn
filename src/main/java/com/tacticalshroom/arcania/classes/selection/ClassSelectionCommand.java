@@ -20,10 +20,11 @@ import java.util.ArrayList;
 
 public class ClassSelectionCommand implements CommandExecutor {
 
+    @Override
     public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
         if (sender instanceof Player player)   {
 
-            Inventory inv = Bukkit.createInventory(player, 27);
+            Inventory inv = Bukkit.createInventory(player, 27, ChatColor.GOLD + "Profile Selection");
 
             ItemStack[] profileSelectorItems = new ItemStack[27];
             int counter = 11;
