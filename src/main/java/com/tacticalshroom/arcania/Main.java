@@ -7,7 +7,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class Main extends JavaPlugin {
 
-    Main plugin = null;
+    public static Main plugin = null;
 
     public void onEnable()  {
         plugin = this;
@@ -27,7 +27,7 @@ public class Main extends JavaPlugin {
 
 
         //-------------------------------COMMANDS--------------------------------------------------------------------------------------
-        this.getCommand("class").setExecutor(new ClassSelectionCommand());
+        this.getCommand("profiles").setExecutor(new ClassSelectionCommand());
 
 
 

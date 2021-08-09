@@ -1,113 +1,176 @@
 package com.tacticalshroom.arcania.classes.selection;
 
+import com.tacticalshroom.arcania.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class ClassSelectionCommand implements CommandExecutor {
 
     public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
-        if (sender instanceof Player)   {
-            Player player = (Player) sender;
-            Inventory inv = Bukkit.createInventory(player, 27, ChatColor.GOLD + "Class Selection");
+        if (sender instanceof Player player)   {
 
-            ItemStack[] classItems = new ItemStack[27];
+            Inventory inv = Bukkit.createInventory(player, 27);
 
-            ItemStack knight = new ItemStack(Material.SHIELD, 1);
-            ItemMeta knightMeta = knight.getItemMeta();
-            knightMeta.setDisplayName(ChatColor.DARK_RED + "Knight");
-            knightMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-            knightMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-            knightMeta.setLocalizedName("knight");
-            ArrayList<String> knightLore = new ArrayList<>();
-            knightLore.add(" ");
-            knightLore.add(ChatColor.RED + "Base Health: 14");
-            knightLore.add("[TEMPLATE]");
-            knightLore.add(" ");
-            knightLore.add(ChatColor.YELLOW + "LEFT CLICK TO CREATE CHARACTER");
-            knightMeta.setLore(knightLore);
-            knight.setItemMeta(knightMeta);
+            ItemStack[] profileSelectorItems = new ItemStack[27];
+            int counter = 11;
 
-            ItemStack rogue = new ItemStack(Material.LEATHER_BOOTS, 1);
-            ItemMeta rogueMeta = rogue.getItemMeta();
-            rogueMeta.setDisplayName(ChatColor.LIGHT_PURPLE + "Rogue");
-            rogueMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-            rogueMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-            rogueMeta.setLocalizedName("rogue");
-            ArrayList<String> rogueLore = new ArrayList<>();
-            rogueLore.add(" ");
-            rogueLore.add(ChatColor.RED + "Base Health: 10");
-            rogueLore.add("[TEMPLATE]");
-            rogueLore.add(" ");
-            rogueLore.add(ChatColor.YELLOW + "LEFT CLICK TO CREATE CHARACTER");
-            rogueMeta.setLore(rogueLore);
-            rogue.setItemMeta(rogueMeta);
+            if (new File(Main.plugin.getDataFolder().getAbsolutePath() + File.separator + "Profiles", player.getUniqueId() + "-" + "knight" + "-Profile.yml").exists()) {
 
-            ItemStack wizard = new ItemStack(Material.END_CRYSTAL, 1);
-            ItemMeta wizardMeta = wizard.getItemMeta();
-            wizardMeta.setDisplayName(ChatColor.GOLD + "Wizard");
-            wizardMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-            wizardMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-            wizardMeta.setLocalizedName("wizard");
-            ArrayList<String> wizardLore = new ArrayList<>();
-            wizardLore.add(" ");
-            wizardLore.add(ChatColor.RED + "Base Health: 8");
-            wizardLore.add("[TEMPLATE]");
-            wizardLore.add(" ");
-            wizardLore.add(ChatColor.YELLOW + "LEFT CLICK TO CREATE CHARACTER");
-            wizardMeta.setLore(wizardLore);
-            wizard.setItemMeta(wizardMeta);
-
-            ItemStack ranger = new ItemStack(Material.BOW, 1);
-            ItemMeta rangerMeta = ranger.getItemMeta();
-            rangerMeta.setDisplayName(ChatColor.DARK_GREEN + "Ranger");
-            rangerMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-            rangerMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-            rangerMeta.setLocalizedName("ranger");
-            ArrayList<String> rangerLore = new ArrayList<>();
-            rangerLore.add(" ");
-            rangerLore.add(ChatColor.RED + "Base Health: 12");
-            rangerLore.add("[TEMPLATE]");
-            rangerLore.add(" ");
-            rangerLore.add(ChatColor.YELLOW + "LEFT CLICK TO CREATE CHARACTER");
-            rangerMeta.setLore(rangerLore);
-            ranger.setItemMeta(rangerMeta);
-
-            ItemStack druid = new ItemStack(Material.FLOWERING_AZALEA_LEAVES, 1);
-            ItemMeta druidMeta = druid.getItemMeta();
-            druidMeta.setDisplayName(ChatColor.BLUE + "Druid");
-            druidMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-            druidMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-            druidMeta.setLocalizedName("druid");
-            ArrayList<String> druidLore = new ArrayList<>();
-            druidLore.add(" ");
-            druidLore.add(ChatColor.RED + "Base Health: 10");
-            druidLore.add("[TEMPLATE]");
-            druidLore.add(" ");
-            druidLore.add(ChatColor.YELLOW + "LEFT CLICK TO CREATE CHARACTER");
-            druidMeta.setLore(druidLore);
-            druid.setItemMeta(druidMeta);
+                File f = new File(Main.plugin.getDataFolder().getAbsolutePath() + File.separator + "Profiles", player.getUniqueId() + "-" + "knight" + "-Profile.yml");
+                FileConfiguration c = YamlConfiguration.loadConfiguration(f);
 
 
-            classItems[11] = knight;
-            classItems[12] = rogue;
-            classItems[13] = wizard;
-            classItems[14] = ranger;
-            classItems[15] = druid;
+                ItemStack knight = new ItemStack(Material.SHIELD, 1);
+                ItemMeta knightMeta = knight.getItemMeta();
+                knightMeta.setDisplayName(ChatColor.DARK_RED + "Knight");
+                knightMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+                knightMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+                knightMeta.setLocalizedName("knight");
+                ArrayList<String> knightLore = new ArrayList<>();
+                knightLore.add(ChatColor.ITALIC + "...And in the reigning glory of");
+                knightLore.add(ChatColor.ITALIC + "our king we stand true...");
+                knightLore.add("Level: " + ChatColor.YELLOW + c.getInt("stats.level"));
+                knightLore.add("Health: " + ChatColor.RED + c.getInt("stats.health"));
+                knightLore.add("[TEMPLATE]");
+                knightLore.add(" ");
+                knightLore.add(ChatColor.YELLOW + "LEFT CLICK TO SELECT PROFILE");
+                knightMeta.setLore(knightLore);
+                knight.setItemMeta(knightMeta);
 
-            inv.setContents(classItems);
+                profileSelectorItems[counter] = knight;
+                counter += 1;
+            }
+            if (new File(Main.plugin.getDataFolder().getAbsolutePath() + File.separator + "Profiles", player.getUniqueId() + "-" + "rogue" + "-Profile.yml").exists()) {
+                File f = new File(Main.plugin.getDataFolder().getAbsolutePath() + File.separator + "Profiles", player.getUniqueId() + "-" + "rogue" + "-Profile.yml");
+                FileConfiguration c = YamlConfiguration.loadConfiguration(f);
 
+                ItemStack rogue = new ItemStack(Material.LEATHER_BOOTS, 1);
+                ItemMeta rogueMeta = rogue.getItemMeta();
+                rogueMeta.setDisplayName(ChatColor.DARK_PURPLE + "Rogue");
+                rogueMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+                rogueMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+                rogueMeta.setLocalizedName("rogue");
+                ArrayList<String> rogueLore = new ArrayList<>();
+                rogueLore.add(ChatColor.ITALIC + "When the sun sets, there are");
+                rogueLore.add(ChatColor.ITALIC + "no laws that bind us...");
+                rogueLore.add("Level: " + ChatColor.YELLOW + c.getInt("stats.level"));
+                rogueLore.add("Health: " + ChatColor.RED + c.getInt("stats.health"));
+                rogueLore.add("[TEMPLATE]");
+                rogueLore.add(" ");
+                rogueLore.add(ChatColor.YELLOW + "LEFT CLICK TO SELECT PROFILE");
+                rogueMeta.setLore(rogueLore);
+                rogue.setItemMeta(rogueMeta);
 
+                profileSelectorItems[counter] = rogue;
+                counter += 1;
+            }
+            if (new File(Main.plugin.getDataFolder().getAbsolutePath() + File.separator + "Profiles", player.getUniqueId() + "-" + "wizard" + "-Profile.yml").exists()) {
+                File f = new File(Main.plugin.getDataFolder().getAbsolutePath() + File.separator + "Profiles", player.getUniqueId() + "-" + "wizard" + "-Profile.yml");
+                FileConfiguration c = YamlConfiguration.loadConfiguration(f);
+
+                ItemStack wizard = new ItemStack(Material.END_CRYSTAL, 1);
+                ItemMeta wizardMeta = wizard.getItemMeta();
+                wizardMeta.setDisplayName(ChatColor.GOLD + "Wizard");
+                wizardMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+                wizardMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+                wizardMeta.setLocalizedName("wizard");
+                ArrayList<String> wizardLore = new ArrayList<>();
+                wizardLore.add(ChatColor.ITALIC + "Bound by the Arcane nature of");
+                wizardLore.add(ChatColor.ITALIC + "this world, we fight...");
+                wizardLore.add("Level: " + ChatColor.YELLOW + c.getInt("stats.level"));
+                wizardLore.add("Health: " + ChatColor.RED + c.getInt("stats.health"));
+                wizardLore.add("[TEMPLATE]");
+                wizardLore.add(" ");
+                wizardLore.add(ChatColor.YELLOW + "LEFT CLICK TO SELECT PROFILE");
+                wizardMeta.setLore(wizardLore);
+                wizard.setItemMeta(wizardMeta);
+
+                profileSelectorItems[counter] = wizard;
+                counter += 1;
+            }
+            if (new File(Main.plugin.getDataFolder().getAbsolutePath() + File.separator + "Profiles", player.getUniqueId() + "-" + "ranger" + "-Profile.yml").exists()) {
+                File f = new File(Main.plugin.getDataFolder().getAbsolutePath() + File.separator + "Profiles", player.getUniqueId() + "-" + "ranger" + "-Profile.yml");
+                FileConfiguration c = YamlConfiguration.loadConfiguration(f);
+
+                ItemStack ranger = new ItemStack(Material.BOW, 1);
+                ItemMeta rangerMeta = ranger.getItemMeta();
+                rangerMeta.setDisplayName(ChatColor.DARK_GREEN + "Ranger");
+                rangerMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+                rangerMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+                rangerMeta.setLocalizedName("ranger");
+                ArrayList<String> rangerLore = new ArrayList<>();
+                rangerLore.add(ChatColor.ITALIC + "Through cursed shadow and bone,");
+                rangerLore.add(ChatColor.ITALIC + "our bow shoots true...");
+                rangerLore.add("Level: " + ChatColor.YELLOW + c.getInt("stats.level"));
+                rangerLore.add("Health: " + ChatColor.RED + c.getInt("stats.health"));
+                rangerLore.add("[TEMPLATE]");
+                rangerLore.add(" ");
+                rangerLore.add(ChatColor.YELLOW + "LEFT CLICK TO SELECT PROFILE");
+                rangerMeta.setLore(rangerLore);
+                ranger.setItemMeta(rangerMeta);
+
+                profileSelectorItems[counter] = ranger;
+                counter += 1;
+            }
+            if (new File(Main.plugin.getDataFolder().getAbsolutePath() + File.separator + "Profiles", player.getUniqueId() + "-" + "druid" + "-Profile.yml").exists()) {
+                File f = new File(Main.plugin.getDataFolder().getAbsolutePath() + File.separator + "Profiles", player.getUniqueId() + "-" + "ranger" + "-Profile.yml");
+                FileConfiguration c = YamlConfiguration.loadConfiguration(f);
+
+                ItemStack druid = new ItemStack(Material.FLOWERING_AZALEA_LEAVES, 1);
+                ItemMeta druidMeta = druid.getItemMeta();
+                druidMeta.setDisplayName(ChatColor.DARK_GREEN + "Druid");
+                druidMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+                druidMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+                druidMeta.setLocalizedName("druid");
+                ArrayList<String> druidLore = new ArrayList<>();
+                druidLore.add(ChatColor.ITALIC + "Through cursed shadow and bone,");
+                druidLore.add(ChatColor.ITALIC + "our bow shoots true...");
+                druidLore.add("Level: " + ChatColor.YELLOW + c.getInt("stats.level"));
+                druidLore.add("Health: " + ChatColor.RED + c.getInt("stats.health"));
+                druidLore.add("[TEMPLATE]");
+                druidLore.add(" ");
+                druidLore.add(ChatColor.YELLOW + "LEFT CLICK TO SELECT PROFILE");
+                druidMeta.setLore(druidLore);
+                druid.setItemMeta(druidMeta);
+
+                profileSelectorItems[counter] = druid;
+                counter += 1;
+            }
+
+            ItemStack blank = new ItemStack(Material.BLACK_STAINED_GLASS_PANE, 1);
+            ItemMeta blankMeta = blank.getItemMeta();
+            blankMeta.setDisplayName(ChatColor.WHITE + "Empty Profile Slot");
+            blankMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+            blankMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+            blankMeta.setLocalizedName("create");
+            ArrayList<String> blankLore = new ArrayList<>();
+            blankLore.add(ChatColor.ITALIC + "The future of Arcania rests");
+            blankLore.add(ChatColor.ITALIC + "in your hands...");
+            blankLore.add("This is an empty profile slot!");
+            blankLore.add(ChatColor.YELLOW + "CLICK TO CREATE A NEW PROFILE");
+            blankMeta.setLore(blankLore);
+            blank.setItemMeta(blankMeta);
+
+            while (counter < 16)   {
+                profileSelectorItems[counter] = blank;
+                counter++;
+            }
+
+            inv.setContents(profileSelectorItems);
             player.openInventory(inv);
         }
         return false;
