@@ -16,7 +16,6 @@ public class ProfileSaver implements Listener {
         if (player.hasMetadata("class"))   {
             for (ArcaniaPlayer arcaniaPlayer : Main.players)    {
                 if (arcaniaPlayer.player == player) {
-                    Main.plugin.getServer().getConsoleSender().sendMessage("WHWHHWWHHWHWHHAAAAAAAAA");
                     arcaniaPlayer.save();
                     Main.players.remove(arcaniaPlayer);
                     break;

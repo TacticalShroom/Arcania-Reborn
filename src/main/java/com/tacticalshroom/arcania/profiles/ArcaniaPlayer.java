@@ -5,6 +5,9 @@ import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public abstract class ArcaniaPlayer {
 
     protected double mana, maxMana, power, maxPower;
@@ -29,18 +32,33 @@ public abstract class ArcaniaPlayer {
         this.con = 0;
         this.wis = 0;
         this.chr = 0;
+        loop();
     }
 
     public ArcaniaPlayer(Player player)  {
         this.player = player;
         load();
+        loop();
     }
 
     public abstract void save();
     public abstract void load();
-
     public abstract void statBar();
 
+
+    public void loop()  {
+        Timer timer = new Timer();
+        TimerTask task = new TimerTask() {
+            @Override
+            public void run() {
+                statBar();
+                if (!player.isOnline()) {
+                    cancel();
+                }
+            }
+        };
+        timer.schedule(task, 0, 100);
+    }
 
     public void setHealth(double health) {
         this.player.setHealth(health);
@@ -104,6 +122,18 @@ public abstract class ArcaniaPlayer {
 
     public Player getPlayer() {
         return player;
+    }
+
+    public float getXP()   {
+        return this.player.getExp();
+    }
+
+    public void setXP(float xp) {
+        this.player.setExp(xp);
+    }
+
+    public void addXP(float xp) {
+        this.player.giveExp((int) xp);
     }
 
     public int getChr() {

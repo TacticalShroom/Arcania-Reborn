@@ -13,12 +13,18 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.metadata.FixedMetadataValue;
 
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Knight extends ArcaniaPlayer {
+
+    private int countdown;
+
     public Knight(double health, double maxHealth, double mana, double maxMana, double level, Location location, Player player) {
         super(health, maxHealth, mana, maxMana, level, location, player);
     }
@@ -74,7 +80,7 @@ public class Knight extends ArcaniaPlayer {
     }
 
     public void load() {
-        File file = new File(Main.plugin.getDataFolder().getAbsolutePath() + File.separator + "Profiles", player.getUniqueId() + "-" + "druid" + "-Profile.yml");
+        File file = new File(Main.plugin.getDataFolder().getAbsolutePath() + File.separator + "Profiles", player.getUniqueId() + "-" + "knight" + "-Profile.yml");
         FileConfiguration c = YamlConfiguration.loadConfiguration(file);
 
         double x = c.getDouble("location.x");
@@ -101,10 +107,36 @@ public class Knight extends ArcaniaPlayer {
         this.setChr(c.getInt("stats.charisma"));
     }
 
+    public void ability()   {
+        this.player.setMetadata("knightAbility", new FixedMetadataValue(Main.plugin, true));
+        countDownStart();
+    }
+
+    public void countDownStart()    {
+        countdown = 15;
+        Timer timer = new Timer();
+        TimerTask task = new TimerTask() {
+            @Override
+            public void run() {
+                countdown -= 1;
+                if (countdown <= 0) {
+                    timer.cancel();
+                    cancel();
+                }
+            }
+        };
+        timer.schedule(task, 1000, 1000);
+    }
+
     public void statBar() {
         String arg1 = ChatColor.RED + "♡ " + getHealth() + "/" + getMaxHealth();
-        String arg2 = "";
-        String arg3 = "";
+        String arg2 = " ";
+        String arg3 = ChatColor.WHITE + "Ability: [";
+
+        for (int i = 0; i < 15; i++)    {
+            arg3 += i + countdown < 15 ? ChatColor.GREEN + "|" : ChatColor.DARK_RED + "|";
+        }
+        arg3 += ChatColor.WHITE + "]";
 
         this.player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(arg1 + "                     " + arg2 + "                     " + arg3));
     }

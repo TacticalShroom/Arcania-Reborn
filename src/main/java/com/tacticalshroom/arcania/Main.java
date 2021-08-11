@@ -1,6 +1,7 @@
 package com.tacticalshroom.arcania;
 
 import com.tacticalshroom.arcania.profiles.ArcaniaPlayer;
+import com.tacticalshroom.arcania.profiles.classes.knight.KnightAbility;
 import com.tacticalshroom.arcania.profiles.classes.selection.ClassSelectionCommand;
 import com.tacticalshroom.arcania.profiles.classes.selection.ClassSelectionListener;
 import com.tacticalshroom.arcania.profiles.ProfileSaver;
@@ -27,6 +28,7 @@ public class Main extends JavaPlugin {
         //-------------------------------LISTENERS--------------------------------------------------------------------------------------
         this.getServer().getPluginManager().registerEvents(new ClassSelectionListener(), this);
         this.getServer().getPluginManager().registerEvents(new ProfileSaver(), this);
+        this.getServer().getPluginManager().registerEvents(new KnightAbility(), this);
 
 
 

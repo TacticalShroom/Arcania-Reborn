@@ -6,3 +6,5 @@ description: Arcania Reborn MMORPG plugin
 commands:
   profiles:
     description: opens class selection gui
+  logout:
+    description: logs a player out of their current profile
