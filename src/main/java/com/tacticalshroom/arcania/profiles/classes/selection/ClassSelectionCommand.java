@@ -1,4 +1,4 @@
-package com.tacticalshroom.arcania.classes.selection;
+package com.tacticalshroom.arcania.profiles.classes.selection;
 
 import com.tacticalshroom.arcania.Main;
 import org.bukkit.Bukkit;
@@ -128,7 +128,7 @@ public class ClassSelectionCommand implements CommandExecutor {
                 counter += 1;
             }
             if (new File(Main.plugin.getDataFolder().getAbsolutePath() + File.separator + "Profiles", player.getUniqueId() + "-" + "druid" + "-Profile.yml").exists()) {
-                File f = new File(Main.plugin.getDataFolder().getAbsolutePath() + File.separator + "Profiles", player.getUniqueId() + "-" + "ranger" + "-Profile.yml");
+                File f = new File(Main.plugin.getDataFolder().getAbsolutePath() + File.separator + "Profiles", player.getUniqueId() + "-" + "druid" + "-Profile.yml");
                 FileConfiguration c = YamlConfiguration.loadConfiguration(f);
 
                 ItemStack druid = new ItemStack(Material.FLOWERING_AZALEA_LEAVES, 1);
@@ -140,8 +140,8 @@ public class ClassSelectionCommand implements CommandExecutor {
                 ArrayList<String> druidLore = new ArrayList<>();
                 druidLore.add(ChatColor.ITALIC + "Through cursed shadow and bone,");
                 druidLore.add(ChatColor.ITALIC + "our bow shoots true...");
-                druidLore.add("Level: " + ChatColor.YELLOW + c.getInt("stats.level"));
-                druidLore.add("Health: " + ChatColor.RED + c.getInt("stats.health"));
+                druidLore.add("Level: " + ChatColor.YELLOW + c.getDouble("stats.level"));
+                druidLore.add("Health: " + ChatColor.RED + c.getDouble("stats.maxHealth"));
                 druidLore.add("[TEMPLATE]");
                 druidLore.add(" ");
                 druidLore.add(ChatColor.YELLOW + "LEFT CLICK TO SELECT PROFILE");
