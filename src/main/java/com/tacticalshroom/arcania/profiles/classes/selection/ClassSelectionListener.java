@@ -2,10 +2,11 @@ package com.tacticalshroom.arcania.profiles.classes.selection;
 
 import com.tacticalshroom.arcania.Main;
 import com.tacticalshroom.arcania.profiles.classes.druid.Druid;
+import com.tacticalshroom.arcania.profiles.classes.knight.Knight;
+import com.tacticalshroom.arcania.profiles.classes.ranger.Ranger;
+import com.tacticalshroom.arcania.profiles.classes.rogue.Rogue;
+import com.tacticalshroom.arcania.profiles.classes.wizard.Wizard;
 import org.bukkit.*;
-import org.bukkit.attribute.Attribute;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -36,11 +37,17 @@ public class ClassSelectionListener implements Listener {
                 player.setMetadata("class", new FixedMetadataValue(Main.plugin, "knight"));
                 player.sendMessage(ChatColor.GREEN + "You have selected the knight class!");
 
+                Knight knight = new Knight(14, 14, 0, 0, 0, Bukkit.getWorld("SG").getSpawnLocation(), player);
+                Main.players.add(knight);
+
                 player.closeInventory();
             }
             else if (e.getCurrentItem().getItemMeta().getLocalizedName().equals("rogue"))   {
                 player.setMetadata("class", new FixedMetadataValue(Main.plugin, "rogue"));
                 player.sendMessage(ChatColor.GREEN + "You have selected the rogue class!");
+
+                Rogue rogue = new Rogue(10, 10, 0, 0, 0, Bukkit.getWorld("SG").getSpawnLocation(), player);
+                Main.players.add(rogue);
 
                 player.closeInventory();
             }
@@ -48,11 +55,17 @@ public class ClassSelectionListener implements Listener {
                 player.setMetadata("class", new FixedMetadataValue(Main.plugin, "wizard"));
                 player.sendMessage(ChatColor.GREEN + "You have selected the wizard class!");
 
+                Wizard wizard = new Wizard(8, 8, 100, 100, 0, Bukkit.getWorld("SG").getSpawnLocation(), player);
+                Main.players.add(wizard);
+
                 player.closeInventory();
             }
             else if (e.getCurrentItem().getItemMeta().getLocalizedName().equals("ranger"))   {
                 player.setMetadata("class", new FixedMetadataValue(Main.plugin, "ranger"));
                 player.sendMessage(ChatColor.GREEN + "You have selected the ranger class!");
+
+                Ranger ranger = new Ranger(12, 12, 20, 20, 0, Bukkit.getWorld("SG").getSpawnLocation(), player);
+                Main.players.add(ranger);
 
                 player.closeInventory();
             }
@@ -167,21 +180,32 @@ public class ClassSelectionListener implements Listener {
             if (e.getCurrentItem().getItemMeta().getLocalizedName().equals("knight"))   {
                 player.setMetadata("class", new FixedMetadataValue(Main.plugin, "knight"));
 
+                Knight knight = new Knight(player);
+                Main.players.add(knight);
+
                 player.closeInventory();
             }
             else if (e.getCurrentItem().getItemMeta().getLocalizedName().equals("rogue"))   {
                 player.setMetadata("class", new FixedMetadataValue(Main.plugin, "rogue"));
+
+                Rogue rogue = new Rogue(player);
+                Main.players.add(rogue);
 
                 player.closeInventory();
             }
             else if (e.getCurrentItem().getItemMeta().getLocalizedName().equals("wizard"))   {
                 player.setMetadata("class", new FixedMetadataValue(Main.plugin, "wizard"));
 
+                Wizard wizard = new Wizard(player);
+                Main.players.add(wizard);
 
                 player.closeInventory();
             }
             else if (e.getCurrentItem().getItemMeta().getLocalizedName().equals("ranger"))   {
                 player.setMetadata("class", new FixedMetadataValue(Main.plugin, "ranger"));
+
+                Ranger ranger = new Ranger(player);
+                Main.players.add(ranger);
 
                 player.closeInventory();
             }

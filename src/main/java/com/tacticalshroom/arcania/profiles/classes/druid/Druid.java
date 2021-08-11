@@ -25,36 +25,35 @@ public class Druid extends ArcaniaPlayer {
     }
 
     public void save() {
-        update();
         File file = new File(Main.plugin.getDataFolder().getAbsolutePath() + File.separator + "Profiles", player.getUniqueId() + "-" + "druid" + "-Profile.yml");
         FileConfiguration c = YamlConfiguration.loadConfiguration(file);
 
         //stats
-        c.set("stats.maxHealth", this.maxHealth);
-        c.set("stats.health", this.health);
-        c.set("stats.level", this.level);
-        c.set("stats.mana", this.mana);
-        c.set("stats.maxMana", this.maxMana);
+        c.set("stats.maxHealth", this.getMaxHealth());
+        c.set("stats.health", this.getHealth());
+        c.set("stats.level", this.getLevel());
+        c.set("stats.mana", this.getMana());
+        c.set("stats.maxMana", this.getMaxMana());
 
         //inventory
-        c.set("inventory.contents", this.inventory);
-        c.set("inventory.armor", this.armor);
+        c.set("inventory.contents", this.getInventory());
+        c.set("inventory.armor", this.getArmor());
 
         //location
-        c.set("location.x", this.location.getX());
-        c.set("location.y", this.location.getY());
-        c.set("location.z", this.location.getZ());
-        c.set("location.yaw", this.location.getYaw());
-        c.set("location.pitch", this.location.getPitch());
-        c.set("location.world", this.location.getWorld().getName().trim());
+        c.set("location.x", this.getLocation().getX());
+        c.set("location.y", this.getLocation().getY());
+        c.set("location.z", this.getLocation().getZ());
+        c.set("location.yaw", this.getLocation().getYaw());
+        c.set("location.pitch", this.getLocation().getPitch());
+        c.set("location.world", this.getLocation().getWorld().getName().trim());
 
 
         //core stats
-        c.set("stats.strength", this.str);
-        c.set("stats.dexterity", this.dex);
-        c.set("stats.constitution", this.con);
-        c.set("stats.wisdom", this.wis);
-        c.set("stats.charisma", this.chr);
+        c.set("stats.strength", this.getStr());
+        c.set("stats.dexterity", this.getDex());
+        c.set("stats.constitution", this.getCon());
+        c.set("stats.wisdom", this.getWis());
+        c.set("stats.charisma", this.getChr());
 
         try {
             c.save(file);
@@ -68,7 +67,6 @@ public class Druid extends ArcaniaPlayer {
         player.setHealth(20);
         player.setLevel(0);
 
-        player.removeMetadata("playing", Main.plugin);
         player.removeMetadata("class", Main.plugin);
     }
 
@@ -84,38 +82,23 @@ public class Druid extends ArcaniaPlayer {
 
         World world = Bukkit.getWorld(c.getString("location.world"));
         Location location = new Location(world, x, y, z, (float) yaw, (float) pitch);
-        this.location = location;
-        this.inventory = c.getList("inventory.contents").toArray(new ItemStack[36]);
-        this.armor = c.getList("inventory.armor").toArray(new ItemStack[4]);
-        this.health = c.getDouble("stats.health");
-        this.maxHealth = c.getDouble("stats.maxHealth");
-        this.level = c.getDouble("stats.level");
-        this.mana = c.getDouble("stats.mana");
-        this.maxMana = c.getDouble("stats.maxMana");
+        this.setLocation(location);
+        this.setInventory(c.getList("inventory.contents").toArray(new ItemStack[36]));
+        this.setArmor(c.getList("inventory.armor").toArray(new ItemStack[4]));
+        this.setHealth(c.getDouble("stats.health"));
+        this.setMaxHealth(c.getDouble("stats.maxHealth"));
+        this.setLevel(c.getDouble("stats.level"));
+        this.setMana(c.getDouble("stats.mana"));
+        this.setMaxMana(c.getDouble("stats.maxMana"));
 
-        this.str = c.getInt("stats.strength");
-        this.dex = c.getInt("stats.dexterity");
-        this.con = c.getInt("stats.constitution");
-        this.wis = c.getInt("stats.wisdom");
-        this.chr = c.getInt("stats.charisma");
-
-        player.teleport(this.location);
-        player.getInventory().setContents(this.inventory);
-        player.getInventory().setArmorContents(this.armor);
-        player.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(this.maxHealth);
-        player.setHealth(this.health);
+        this.setStr(c.getInt("stats.strength"));
+        this.setDex(c.getInt("stats.dexterity"));
+        this.setCon(c.getInt("stats.constitution"));
+        this.setWis(c.getInt("stats.wisdom"));
+        this.setChr(c.getInt("stats.charisma"));
     }
 
+    public void statBar() {
 
-
-
-    public void update()    {
-        this.health = (float) player.getHealth();
-        this.inventory = player.getInventory().getContents();
-        this.armor = player.getInventory().getArmorContents();
-        this.level = player.getLevel();
-        this.maxHealth = (float) player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getBaseValue();
-        this.location = player.getLocation();
-        //mana and maxMana is not needed to update because mana is purely stored in the arcaniaPlayer class
     }
 }
