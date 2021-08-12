@@ -29,6 +29,7 @@ public class Main extends JavaPlugin {
 
         //-------------------------------LISTENERS--------------------------------------------------------------------------------------
         PluginManager pluginManager = getServer().getPluginManager();
+        pluginManager.registerEvents(new PlayerSpawner(), this);
         pluginManager.registerEvents(new ProfileSaver(), this);
         pluginManager.registerEvents(gui, this);
 

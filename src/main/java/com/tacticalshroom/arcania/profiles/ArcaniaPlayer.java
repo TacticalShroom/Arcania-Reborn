@@ -93,12 +93,6 @@ public abstract class ArcaniaPlayer {
             ex.printStackTrace();
         }
 
-        player.getInventory().clear();
-        player.teleport(Bukkit.getWorld("SG").getSpawnLocation());
-        player.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(20);
-        player.setHealth(20);
-        player.setLevel(0);
-
         player.removeMetadata("class", Main.plugin);
     }
 
