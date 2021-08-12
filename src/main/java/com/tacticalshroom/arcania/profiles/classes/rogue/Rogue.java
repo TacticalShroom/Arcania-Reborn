@@ -15,7 +15,7 @@ public class Rogue extends ArcaniaPlayer {
     }
 
     @Override
-    protected String getConfigName() {
+    public String getClassName() {
         return "rogue";
     }
 

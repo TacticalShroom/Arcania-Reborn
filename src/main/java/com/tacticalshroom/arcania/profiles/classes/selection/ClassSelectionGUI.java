@@ -35,10 +35,10 @@ public class ClassSelectionGUI extends ArcaniaGUI {
         };
     }
 
-    private void handleSelection(String className, ArcaniaPlayer player){
+    private void handleSelection(ArcaniaPlayer player){
         Main.plugin.players.add(player);
-        getPlayer().setMetadata("class", new FixedMetadataValue(Main.plugin, className));
-        getPlayer().sendMessage(ChatColor.GREEN + "You have selected the " + className + " class!");
+        getPlayer().setMetadata("class", new FixedMetadataValue(Main.plugin, player.getClassName()));
+        getPlayer().sendMessage(ChatColor.GREEN + "You have selected the " + player.getClassName() + " class!");
         close();
     }
 
@@ -47,31 +47,31 @@ public class ClassSelectionGUI extends ArcaniaGUI {
         setSlot(11, Material.SHIELD, ChatColor.DARK_RED + "Knight",
                 getLore(14, "...And in the reigning glory of", "our king we stand true..."));
         addClickHandler(11, () -> {
-            handleSelection("knight", new Knight(14, 14, 0, 0, 0, Bukkit.getWorld("SG").getSpawnLocation(), getPlayer()));
+            handleSelection(new Knight(14, 14, 0, 0, 0, Bukkit.getWorld("SG").getSpawnLocation(), getPlayer()));
         });
 
         setSlot(12, Material.LEATHER_BOOTS, ChatColor.DARK_PURPLE + "Rogue",
                 getLore(10, "When the sun sets, there are", "no laws that bind us..."));
         addClickHandler(12, () -> {
-            handleSelection("rogue", new Rogue(10, 10, 0, 0, 0, Bukkit.getWorld("SG").getSpawnLocation(), getPlayer()));
+            handleSelection(new Rogue(10, 10, 0, 0, 0, Bukkit.getWorld("SG").getSpawnLocation(), getPlayer()));
         });
 
         setSlot(13, Material.END_CRYSTAL, ChatColor.GOLD + "Wizard",
                 getLore(8, "Bound by the Arcane nature of", "this world, we fight..."));
         addClickHandler(13, () -> {
-            handleSelection("wizard", new Wizard(8, 8, 0, 0, 0, Bukkit.getWorld("SG").getSpawnLocation(), getPlayer()));
+            handleSelection(new Wizard(8, 8, 0, 0, 0, Bukkit.getWorld("SG").getSpawnLocation(), getPlayer()));
         });
 
         setSlot(14, Material.BOW, ChatColor.DARK_GREEN + "Ranger",
                 getLore(12, "Through cursed shadow and bone,", "our bow shoots true..."));
         addClickHandler(14, () -> {
-            handleSelection("ranger", new Ranger(12, 12, 0, 0, 0, Bukkit.getWorld("SG").getSpawnLocation(), getPlayer()));
+            handleSelection(new Ranger(12, 12, 0, 0, 0, Bukkit.getWorld("SG").getSpawnLocation(), getPlayer()));
         });
 
         setSlot(15, Material.FLOWERING_AZALEA_LEAVES, ChatColor.BLUE + "Druid",
                 getLore(10, "Through cursed shadow and bone,", "our bow shoots true..."));
         addClickHandler(15, () -> {
-            handleSelection("druid", new Druid(10, 10, 0, 0, 0, Bukkit.getWorld("SG").getSpawnLocation(), getPlayer()));
+            handleSelection(new Druid(10, 10, 0, 0, 0, Bukkit.getWorld("SG").getSpawnLocation(), getPlayer()));
         });
 
         setSlot(18, Material.BARRIER, "Back");

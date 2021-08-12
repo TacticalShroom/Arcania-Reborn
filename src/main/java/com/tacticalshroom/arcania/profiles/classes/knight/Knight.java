@@ -26,7 +26,7 @@ public class Knight extends ArcaniaPlayer {
     }
 
     @Override
-    protected String getConfigName() {
+    public String getClassName() {
         return "knight";
     }
 

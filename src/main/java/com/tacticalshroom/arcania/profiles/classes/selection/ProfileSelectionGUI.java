@@ -46,9 +46,9 @@ public class ProfileSelectionGUI extends ArcaniaGUI {
         };
     }
 
-    private void handleSelection(String className, ArcaniaPlayer player){
+    private void handleSelection(ArcaniaPlayer player){
         Main.plugin.players.add(player);
-        getPlayer().setMetadata("class", new FixedMetadataValue(Main.plugin, className));
+        getPlayer().setMetadata("class", new FixedMetadataValue(Main.plugin, player.getClassName()));
         close();
     }
 
@@ -59,35 +59,35 @@ public class ProfileSelectionGUI extends ArcaniaGUI {
         FileConfiguration config = getProfileConfig("knight");
         if(config != null){
             setSlot(11 + index, Material.SHIELD, ChatColor.DARK_RED + "Knight", getLore(config));
-            addClickHandler(11 + index, () -> handleSelection("knight", new Knight(getPlayer())));
+            addClickHandler(11 + index, () -> handleSelection(new Knight(getPlayer())));
             index++;
         }
 
         config = getProfileConfig("rogue");
         if(config != null){
             setSlot(11 + index, Material.LEATHER_BOOTS, ChatColor.DARK_PURPLE + "Rogue", getLore(config));
-            addClickHandler(11 + index, () -> handleSelection("rogue", new Rogue(getPlayer())));
+            addClickHandler(11 + index, () -> handleSelection(new Rogue(getPlayer())));
             index++;
         }
 
         config = getProfileConfig("wizard");
         if(config != null){
             setSlot(11 + index, Material.END_CRYSTAL, ChatColor.GOLD + "Wizard", getLore(config));
-            addClickHandler(11 + index, () -> handleSelection("wizard", new Wizard(getPlayer())));
+            addClickHandler(11 + index, () -> handleSelection(new Wizard(getPlayer())));
             index++;
         }
 
         config = getProfileConfig("ranger");
         if(config != null){
             setSlot(11 + index, Material.SHIELD, ChatColor.DARK_GREEN + "Ranger", getLore(config));
-            addClickHandler(11 + index, () -> handleSelection("ranger", new Ranger(getPlayer())));
+            addClickHandler(11 + index, () -> handleSelection(new Ranger(getPlayer())));
             index++;
         }
 
         config = getProfileConfig("druid");
         if(config != null){
             setSlot(11 + index, Material.FLOWERING_AZALEA_LEAVES, ChatColor.DARK_GREEN + "Druid", getLore(config));
-            addClickHandler(11 + index, () -> handleSelection("druid", new Druid(getPlayer())));
+            addClickHandler(11 + index, () -> handleSelection(new Druid(getPlayer())));
             index++;
         }
 

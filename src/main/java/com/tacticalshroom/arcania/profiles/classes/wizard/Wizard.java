@@ -17,7 +17,7 @@ public class Wizard extends ArcaniaPlayer {
 
 
     @Override
-    protected String getConfigName() {
+    public String getClassName() {
         return "wizard";
     }
 

@@ -16,7 +16,7 @@ public class Druid extends ArcaniaPlayer {
     }
 
     @Override
-    protected String getConfigName() {
+    public String getClassName() {
         return "druid";
     }
 

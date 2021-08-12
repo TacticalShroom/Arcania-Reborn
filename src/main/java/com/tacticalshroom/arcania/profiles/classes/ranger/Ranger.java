@@ -16,7 +16,7 @@ public class Ranger extends ArcaniaPlayer {
     }
 
     @Override
-    protected String getConfigName() {
+    public String getClassName() {
         return "ranger";
     }
 

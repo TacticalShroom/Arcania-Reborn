@@ -49,13 +49,13 @@ public abstract class ArcaniaPlayer {
     }
 
     public abstract void statBar();
+    public abstract String getClassName();
 
-    protected abstract String getConfigName();
     protected abstract void saveCustomConfig(FileConfiguration conifg);
     protected abstract void loadCustomConfig(FileConfiguration config);
 
     public void save() {
-        File file = new File(Main.plugin.getDataFolder().getAbsolutePath() + File.separator + "Profiles", player.getUniqueId() + "-" + getConfigName() + "-Profile.yml");
+        File file = new File(Main.plugin.getDataFolder().getAbsolutePath() + File.separator + "Profiles", player.getUniqueId() + "-" + getClassName() + "-Profile.yml");
         FileConfiguration c = YamlConfiguration.loadConfiguration(file);
 
         //stats
@@ -103,7 +103,7 @@ public abstract class ArcaniaPlayer {
     }
 
     public void load(){
-        File file = new File(Main.plugin.getDataFolder().getAbsolutePath() + File.separator + "Profiles", player.getUniqueId() + "-" + getConfigName() + "-Profile.yml");
+        File file = new File(Main.plugin.getDataFolder().getAbsolutePath() + File.separator + "Profiles", player.getUniqueId() + "-" + getClassName() + "-Profile.yml");
         FileConfiguration c = YamlConfiguration.loadConfiguration(file);
 
         double x = c.getDouble("location.x");
