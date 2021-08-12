@@ -38,7 +38,7 @@ public class ClassSelectionListener implements Listener {
                 player.sendMessage(ChatColor.GREEN + "You have selected the knight class!");
 
                 Knight knight = new Knight(14, 14, 0, 0, 0, Bukkit.getWorld("SG").getSpawnLocation(), player);
-                Main.players.add(knight);
+                Main.plugin.players.add(knight);
 
                 player.closeInventory();
             }
@@ -47,7 +47,7 @@ public class ClassSelectionListener implements Listener {
                 player.sendMessage(ChatColor.GREEN + "You have selected the rogue class!");
 
                 Rogue rogue = new Rogue(10, 10, 0, 0, 0, Bukkit.getWorld("SG").getSpawnLocation(), player);
-                Main.players.add(rogue);
+                Main.plugin.players.add(rogue);
 
                 player.closeInventory();
             }
@@ -56,7 +56,7 @@ public class ClassSelectionListener implements Listener {
                 player.sendMessage(ChatColor.GREEN + "You have selected the wizard class!");
 
                 Wizard wizard = new Wizard(8, 8, 100, 100, 0, Bukkit.getWorld("SG").getSpawnLocation(), player);
-                Main.players.add(wizard);
+                Main.plugin.players.add(wizard);
 
                 player.closeInventory();
             }
@@ -65,7 +65,7 @@ public class ClassSelectionListener implements Listener {
                 player.sendMessage(ChatColor.GREEN + "You have selected the ranger class!");
 
                 Ranger ranger = new Ranger(12, 12, 20, 20, 0, Bukkit.getWorld("SG").getSpawnLocation(), player);
-                Main.players.add(ranger);
+                Main.plugin.players.add(ranger);
 
                 player.closeInventory();
             }
@@ -74,7 +74,7 @@ public class ClassSelectionListener implements Listener {
                 player.sendMessage(ChatColor.GREEN + "You have selected the druid class!");
 
                 Druid druid = new Druid(10, 10, 50, 50, 0, Bukkit.getWorld("SG").getSpawnLocation(), player);
-                Main.players.add(druid);
+                Main.plugin.players.add(druid);
 
                 player.closeInventory();
             }
@@ -181,7 +181,7 @@ public class ClassSelectionListener implements Listener {
                 player.setMetadata("class", new FixedMetadataValue(Main.plugin, "knight"));
 
                 Knight knight = new Knight(player);
-                Main.players.add(knight);
+                Main.plugin.players.add(knight);
 
                 player.closeInventory();
             }
@@ -189,7 +189,7 @@ public class ClassSelectionListener implements Listener {
                 player.setMetadata("class", new FixedMetadataValue(Main.plugin, "rogue"));
 
                 Rogue rogue = new Rogue(player);
-                Main.players.add(rogue);
+                Main.plugin.players.add(rogue);
 
                 player.closeInventory();
             }
@@ -197,7 +197,7 @@ public class ClassSelectionListener implements Listener {
                 player.setMetadata("class", new FixedMetadataValue(Main.plugin, "wizard"));
 
                 Wizard wizard = new Wizard(player);
-                Main.players.add(wizard);
+                Main.plugin.players.add(wizard);
 
                 player.closeInventory();
             }
@@ -205,7 +205,7 @@ public class ClassSelectionListener implements Listener {
                 player.setMetadata("class", new FixedMetadataValue(Main.plugin, "ranger"));
 
                 Ranger ranger = new Ranger(player);
-                Main.players.add(ranger);
+                Main.plugin.players.add(ranger);
 
                 player.closeInventory();
             }
@@ -213,7 +213,7 @@ public class ClassSelectionListener implements Listener {
                 player.setMetadata("class", new FixedMetadataValue(Main.plugin, "druid"));
 
                 Druid druid = new Druid(player);
-                Main.players.add(druid);
+                Main.plugin.players.add(druid);
 
                 player.closeInventory();
             }

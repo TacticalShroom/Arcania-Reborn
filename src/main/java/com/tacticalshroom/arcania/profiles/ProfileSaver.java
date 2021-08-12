@@ -14,10 +14,10 @@ public class ProfileSaver implements Listener {
         Player player = e.getPlayer();
 
         if (player.hasMetadata("class"))   {
-            for (ArcaniaPlayer arcaniaPlayer : Main.players)    {
+            for (ArcaniaPlayer arcaniaPlayer : Main.plugin.players)    {
                 if (arcaniaPlayer.player == player) {
                     arcaniaPlayer.save();
-                    Main.players.remove(arcaniaPlayer);
+                    Main.plugin.players.remove(arcaniaPlayer);
                     break;
                 }
             }

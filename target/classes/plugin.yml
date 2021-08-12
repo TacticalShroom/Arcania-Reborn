@@ -1,0 +1,10 @@
+main: com.tacticalshroom.arcania.Main
+name: Arcania-Reborn
+version: 0.0.1
+api-version: 1.17
+description: Arcania Reborn MMORPG plugin
+commands:
+  profiles:
+    description: opens class selection gui
+  logout:
+    description: logs a player out of their current profile

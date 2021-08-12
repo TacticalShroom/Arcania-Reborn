@@ -11,7 +11,7 @@ public class KnightAbility implements Listener {
 
     @EventHandler
     public void onRightClick(PlayerInteractEvent e)  {
-        for (ArcaniaPlayer arcaniaPlayer : Main.players)    {
+        for (ArcaniaPlayer arcaniaPlayer : Main.plugin.players)    {
             if (arcaniaPlayer.getPlayer() == e.getPlayer()) {
                 if (arcaniaPlayer instanceof Knight)    {
                     if (e.getAction().equals(Action.RIGHT_CLICK_AIR) || e.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {

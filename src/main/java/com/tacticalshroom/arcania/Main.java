@@ -1,11 +1,13 @@
 package com.tacticalshroom.arcania;
 
+import com.tacticalshroom.arcania.gui.GUIManager;
 import com.tacticalshroom.arcania.profiles.ArcaniaPlayer;
-import com.tacticalshroom.arcania.profiles.classes.knight.KnightAbility;
 import com.tacticalshroom.arcania.profiles.classes.selection.ClassSelectionCommand;
 import com.tacticalshroom.arcania.profiles.classes.selection.ClassSelectionListener;
 import com.tacticalshroom.arcania.profiles.ProfileSaver;
 import org.bukkit.ChatColor;
+import org.bukkit.event.HandlerList;
+import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.ArrayList;
@@ -13,7 +15,8 @@ import java.util.ArrayList;
 public class Main extends JavaPlugin {
 
     public static Main plugin = null;
-    public static ArrayList<ArcaniaPlayer> players = new ArrayList<>();
+    public ArrayList<ArcaniaPlayer> players = new ArrayList<>();
+    public GUIManager gui = new GUIManager();
 
     public void onEnable()  {
         plugin = this;
@@ -25,25 +28,18 @@ public class Main extends JavaPlugin {
         getServer().getConsoleSender().sendMessage(ChatColor.LIGHT_PURPLE + "  |    | " + ChatColor.RED + "   Developed by PilotBen");
         getServer().getConsoleSender().sendMessage(ChatColor.LIGHT_PURPLE + " ");
 
+
         //-------------------------------LISTENERS--------------------------------------------------------------------------------------
-        this.getServer().getPluginManager().registerEvents(new ClassSelectionListener(), this);
-        this.getServer().getPluginManager().registerEvents(new ProfileSaver(), this);
-        this.getServer().getPluginManager().registerEvents(new KnightAbility(), this);
-
-
+        PluginManager pluginManager = getServer().getPluginManager();
+        pluginManager.registerEvents(new ProfileSaver(), this);
+        pluginManager.registerEvents(gui, this);
 
 
         //-------------------------------COMMANDS--------------------------------------------------------------------------------------
         this.getCommand("profiles").setExecutor(new ClassSelectionCommand());
-
-
-
-
     }
 
     public void onDisable() {
-
-
         plugin = null;
     }
 }
