@@ -36,8 +36,7 @@ public class ClassSelectionGUI extends ArcaniaGUI {
     }
 
     private void handleSelection(ArcaniaPlayer player){
-        Main.plugin.players.add(player);
-        getPlayer().setMetadata("class", new FixedMetadataValue(Main.plugin, player.getClassName()));
+        player.login();
         getPlayer().sendMessage(ChatColor.GREEN + "You have selected the " + player.getClassName() + " class!");
         close();
     }

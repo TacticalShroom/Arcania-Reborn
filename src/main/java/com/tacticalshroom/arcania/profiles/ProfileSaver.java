@@ -10,18 +10,9 @@ public class ProfileSaver implements Listener {
 
     @EventHandler
     public void onLeave(PlayerQuitEvent e)  {
-
-        Player player = e.getPlayer();
-
-        if (player.hasMetadata("class"))   {
-            for (ArcaniaPlayer arcaniaPlayer : Main.plugin.players)    {
-                if (arcaniaPlayer.player == player) {
-                    arcaniaPlayer.save();
-                    Main.plugin.players.remove(arcaniaPlayer);
-                    break;
-                }
-            }
+        ArcaniaPlayer player = Main.plugin.getArcaniaPlayer(e.getPlayer());
+        if(player != null){
+            player.logout();
         }
     }
-
 }

@@ -2,9 +2,11 @@ package com.tacticalshroom.arcania;
 
 import com.tacticalshroom.arcania.gui.GUIManager;
 import com.tacticalshroom.arcania.profiles.ArcaniaPlayer;
+import com.tacticalshroom.arcania.profiles.LogoutCommand;
 import com.tacticalshroom.arcania.profiles.classes.selection.ProfileSelectionCommand;
 import com.tacticalshroom.arcania.profiles.ProfileSaver;
 import org.bukkit.ChatColor;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -36,9 +38,21 @@ public class Main extends JavaPlugin {
 
         //-------------------------------COMMANDS--------------------------------------------------------------------------------------
         this.getCommand("profiles").setExecutor(new ProfileSelectionCommand());
+        this.getCommand("logout").setExecutor(new LogoutCommand());
     }
 
     public void onDisable() {
         plugin = null;
+    }
+
+    public ArcaniaPlayer getArcaniaPlayer(Player player){
+        if(player.hasMetadata("class")){
+            for(ArcaniaPlayer p : players){
+                if(p.getPlayer() == player){
+                    return p;
+                }
+            }
+        }
+        return null;
     }
 }

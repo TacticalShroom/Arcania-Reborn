@@ -47,8 +47,7 @@ public class ProfileSelectionGUI extends ArcaniaGUI {
     }
 
     private void handleSelection(ArcaniaPlayer player){
-        Main.plugin.players.add(player);
-        getPlayer().setMetadata("class", new FixedMetadataValue(Main.plugin, player.getClassName()));
+        player.login();
         close();
     }
 
@@ -79,7 +78,7 @@ public class ProfileSelectionGUI extends ArcaniaGUI {
 
         config = getProfileConfig("ranger");
         if(config != null){
-            setSlot(11 + index, Material.SHIELD, ChatColor.DARK_GREEN + "Ranger", getLore(config));
+            setSlot(11 + index, Material.BOW, ChatColor.DARK_GREEN + "Ranger", getLore(config));
             addClickHandler(11 + index, () -> handleSelection(new Ranger(getPlayer())));
             index++;
         }

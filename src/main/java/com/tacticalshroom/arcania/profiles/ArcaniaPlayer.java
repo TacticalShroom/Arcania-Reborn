@@ -9,6 +9,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.metadata.FixedMetadataValue;
 
 import java.io.File;
 import java.io.IOException;
@@ -92,8 +93,6 @@ public abstract class ArcaniaPlayer {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-
-        player.removeMetadata("class", Main.plugin);
     }
 
     public void load(){
@@ -126,6 +125,23 @@ public abstract class ArcaniaPlayer {
         loadCustomConfig(c);
     }
 
+    public void logout(){
+        save();
+        Main.plugin.players.remove(this);
+        player.removeMetadata("class", Main.plugin);
+        Main.plugin.getLogger().info("Logged out " + this);
+    }
+
+    public void login(){
+        ArcaniaPlayer existingPlayer = Main.plugin.getArcaniaPlayer(getPlayer());
+        if(existingPlayer != null){
+            existingPlayer.logout();
+        }
+
+        Main.plugin.players.add(this);
+        getPlayer().setMetadata("class", new FixedMetadataValue(Main.plugin, getClassName()));
+        Main.plugin.getLogger().info("Logged in " + this);
+    }
 
     public void loop()  {
         Timer timer = new Timer();
@@ -139,6 +155,11 @@ public abstract class ArcaniaPlayer {
             }
         };
         timer.schedule(task, 0, 100);
+    }
+
+    @Override
+    public String toString(){
+        return player.getDisplayName() + " [" + getClassName() + "]";
     }
 
     public void setHealth(double health) {
