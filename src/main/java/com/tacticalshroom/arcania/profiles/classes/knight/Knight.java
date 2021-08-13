@@ -39,8 +39,10 @@ public class Knight extends ArcaniaPlayer {
     }
 
     public void ability()   {
-        this.player.setMetadata("knightAbility", new FixedMetadataValue(Main.plugin, true));
-        countDownStart();
+        if(countdown <= 0){
+            this.player.setMetadata("knightAbility", new FixedMetadataValue(Main.plugin, true));
+            countDownStart();
+        }
     }
 
     public void countDownStart()    {

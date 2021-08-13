@@ -24,6 +24,8 @@ public abstract class ArcaniaPlayer {
     //stats
     protected int str, dex, con, wis, chr;
 
+    private Timer timer;
+
     public ArcaniaPlayer(double health, double maxHealth, double mana, double maxMana, double level, Location location, Player player)  {
         this.mana = mana;
         this.maxMana = maxMana;
@@ -40,13 +42,11 @@ public abstract class ArcaniaPlayer {
         this.con = 0;
         this.wis = 0;
         this.chr = 0;
-        loop();
     }
 
     public ArcaniaPlayer(Player player)  {
         this.player = player;
         load();
-        loop();
     }
 
     public abstract void statBar();
@@ -127,6 +127,7 @@ public abstract class ArcaniaPlayer {
 
     public void logout(){
         save();
+        timer.cancel();
         Main.plugin.players.remove(this);
         player.removeMetadata("class", Main.plugin);
         Main.plugin.getLogger().info("Logged out " + this);
@@ -140,20 +141,19 @@ public abstract class ArcaniaPlayer {
 
         Main.plugin.players.add(this);
         getPlayer().setMetadata("class", new FixedMetadataValue(Main.plugin, getClassName()));
+        loop();
         Main.plugin.getLogger().info("Logged in " + this);
     }
 
     public void loop()  {
-        Timer timer = new Timer();
+        timer = new Timer();
         TimerTask task = new TimerTask() {
             @Override
             public void run() {
                 statBar();
-                if (!player.isOnline()) {
-                    cancel();
-                }
             }
         };
+
         timer.schedule(task, 0, 100);
     }
 

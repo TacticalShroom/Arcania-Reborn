@@ -1,6 +1,5 @@
 package com.tacticalshroom.arcania.profiles.classes.selection;
 
-import com.tacticalshroom.arcania.Main;
 import com.tacticalshroom.arcania.gui.ArcaniaGUI;
 import com.tacticalshroom.arcania.profiles.ArcaniaPlayer;
 import com.tacticalshroom.arcania.profiles.classes.druid.Druid;
@@ -11,7 +10,6 @@ import com.tacticalshroom.arcania.profiles.classes.wizard.Wizard;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
-import org.bukkit.metadata.FixedMetadataValue;
 
 public class ClassSelectionGUI extends ArcaniaGUI {
     @Override

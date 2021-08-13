@@ -11,28 +11,13 @@ public class KnightAbility implements Listener {
 
     @EventHandler
     public void onRightClick(PlayerInteractEvent e)  {
-        for (ArcaniaPlayer arcaniaPlayer : Main.plugin.players)    {
-            if (arcaniaPlayer.getPlayer() == e.getPlayer()) {
-                if (arcaniaPlayer instanceof Knight)    {
-                    if (e.getAction().equals(Action.RIGHT_CLICK_AIR) || e.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
-                        Knight knight = (Knight) arcaniaPlayer;
-                        knight.ability();
-                    }
+        ArcaniaPlayer player = Main.plugin.getArcaniaPlayer(e.getPlayer());
+        if(player != null){
+            if (player instanceof Knight knight) {
+                if (e.getAction().equals(Action.RIGHT_CLICK_AIR) || e.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
+                    knight.ability();
                 }
             }
         }
     }
-
-    @EventHandler
-    public void onHit(PlayerInteractEvent e) {
-        if (e.getAction().equals(Action.LEFT_CLICK_AIR) || e.getAction().equals(Action.LEFT_CLICK_BLOCK))  {
-            if (e.getPlayer().hasMetadata("knightAbility"))  {
-                e.getPlayer().removeMetadata("knightAbility", Main.plugin);
-                if (e.getClickedBlock() != null)    {
-
-                }
-            }
-        }
-    }
-
 }

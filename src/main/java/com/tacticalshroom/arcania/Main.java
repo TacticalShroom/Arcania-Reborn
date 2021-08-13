@@ -3,6 +3,7 @@ package com.tacticalshroom.arcania;
 import com.tacticalshroom.arcania.gui.GUIManager;
 import com.tacticalshroom.arcania.profiles.ArcaniaPlayer;
 import com.tacticalshroom.arcania.profiles.LogoutCommand;
+import com.tacticalshroom.arcania.profiles.classes.knight.KnightAbility;
 import com.tacticalshroom.arcania.profiles.classes.selection.ProfileSelectionCommand;
 import com.tacticalshroom.arcania.profiles.ProfileSaver;
 import org.bukkit.ChatColor;
@@ -28,13 +29,12 @@ public class Main extends JavaPlugin {
         getServer().getConsoleSender().sendMessage(ChatColor.LIGHT_PURPLE + "  |    | " + ChatColor.RED + "   Developed by PilotBen");
         getServer().getConsoleSender().sendMessage(ChatColor.LIGHT_PURPLE + " ");
 
-
         //-------------------------------LISTENERS--------------------------------------------------------------------------------------
         PluginManager pluginManager = getServer().getPluginManager();
         pluginManager.registerEvents(new PlayerSpawner(), this);
         pluginManager.registerEvents(new ProfileSaver(), this);
         pluginManager.registerEvents(gui, this);
-
+        pluginManager.registerEvents(new KnightAbility(), this);
 
         //-------------------------------COMMANDS--------------------------------------------------------------------------------------
         this.getCommand("profiles").setExecutor(new ProfileSelectionCommand());
