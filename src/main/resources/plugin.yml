@@ -8,3 +8,5 @@ commands:
     description: opens class selection gui
   logout:
     description: logs a player out of their current profile
+  agive:
+    description: gives a player an item specified by it's Arcania item key

@@ -1,6 +1,9 @@
 package com.tacticalshroom.arcania;
 
 import com.tacticalshroom.arcania.gui.GUIManager;
+import com.tacticalshroom.arcania.items.AGiveCommand;
+import com.tacticalshroom.arcania.items.ItemManager;
+import com.tacticalshroom.arcania.items.TestItem;
 import com.tacticalshroom.arcania.profiles.ArcaniaPlayer;
 import com.tacticalshroom.arcania.profiles.LogoutCommand;
 import com.tacticalshroom.arcania.profiles.classes.knight.KnightAbility;
@@ -17,7 +20,9 @@ public class Main extends JavaPlugin {
 
     public static Main plugin = null;
     public ArrayList<ArcaniaPlayer> players = new ArrayList<>();
+
     public GUIManager gui = new GUIManager();
+    public ItemManager itemManager = new ItemManager();
 
     public void onEnable()  {
         plugin = this;
@@ -33,12 +38,17 @@ public class Main extends JavaPlugin {
         PluginManager pluginManager = getServer().getPluginManager();
         pluginManager.registerEvents(new PlayerSpawner(), this);
         pluginManager.registerEvents(new ProfileSaver(), this);
-        pluginManager.registerEvents(gui, this);
         pluginManager.registerEvents(new KnightAbility(), this);
+        pluginManager.registerEvents(gui, this);
+        pluginManager.registerEvents(itemManager, this);
 
         //-------------------------------COMMANDS--------------------------------------------------------------------------------------
         this.getCommand("profiles").setExecutor(new ProfileSelectionCommand());
         this.getCommand("logout").setExecutor(new LogoutCommand());
+        this.getCommand("agive").setExecutor(new AGiveCommand());
+
+        //-------------------------------ITEMS--------------------------------------------------------------------------------------
+        itemManager.registerItemType(new TestItem());
     }
 
     public void onDisable() {
