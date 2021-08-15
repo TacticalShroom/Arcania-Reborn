@@ -46,7 +46,7 @@ public abstract class CustomArcaniaItemType implements ArcaniaItemType {
         ItemMeta meta = itemStack.getItemMeta();
         assert meta != null;
         meta.setUnbreakable(true);
-        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS, ItemFlag.HIDE_ATTRIBUTES);
+        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS, ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE);
         meta.setDisplayName(ChatColor.WHITE + displayName);
         meta.setCustomModelData(customModelData);
         meta.setLore(lore);
